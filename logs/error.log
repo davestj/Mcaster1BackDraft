@@ -1,0 +1,195 @@
+[2026-03-17 09:51:19] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 09:51:20] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 09:51:20] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 09:51:35] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 09:51:35] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 09:51:35] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 09:51:50] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 09:51:50] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 09:51:50] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 09:52:03] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 10:20:48] [FATAL] Bind failed on port 8862: Address already in use
+[2026-03-17 10:20:48] [FATAL] Bind failed on port 8832: Address already in use
+[2026-03-17 10:20:53] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 10:20:53] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 10:20:53] [ERROR] handle_client exception: basic_string: construction from null is not valid
+[2026-03-17 22:20:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:20:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:20:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:20:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:20:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:05] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:05] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:05] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:05] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:05] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:21:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:05] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:05] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:05] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:05] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:05] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:22:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:05] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:05] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:05] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:05] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:05] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:23:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:05] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:05] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:05] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:05] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:05] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:24:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:05] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:05] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:05] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:05] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:05] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:25:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:05] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:05] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:05] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:05] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:05] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:26:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:05] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:05] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:05] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:05] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:05] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:27:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:05] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:05] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:05] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:05] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:05] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:28:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:05] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:05] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:05] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:05] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:05] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:35] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:35] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:35] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:35] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:29:35] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:06] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:06] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:06] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:06] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:06] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:36] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:36] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:36] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:36] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:30:36] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:06] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:06] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:06] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:06] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:06] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:36] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:36] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:36] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:36] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:31:36] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:32:06] [ERROR] WAF rule SQL Injection - UNION SELECT regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:32:06] [ERROR] WAF rule SQL Injection - OR 1=1 regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:32:06] [ERROR] WAF rule XSS - Script Tag regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:32:06] [ERROR] WAF rule Command Injection regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:32:06] [ERROR] WAF rule PHP Exploit Targets regex error: Invalid '(?...)' zero-width assertion in regular expression
+[2026-03-17 22:50:27] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-17 22:50:27] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-17 22:50:27] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-22 19:35:59] [ERROR] nginx -t failed (exit 256)
+[2026-03-22 19:35:59] [ERROR] nginx -t failed (exit 256)
+[2026-03-22 19:36:38] [ERROR] nginx -t failed (exit 256)
+[2026-03-22 19:52:01] [ERROR] nginx -t failed (raw=256 exit=1)
+[2026-03-22 19:53:21] [ERROR] nginx -t failed (raw=256 exit=1)
+[2026-03-22 19:54:15] [ERROR] Failed to write security snippet: /etc/nginx/backdraft.d/sites/audiorealm.net/audiorealm.net-security.conf
+[2026-03-22 22:14:53] [ERROR] Failed to create site config dir: /etc/nginx/backdraft.d/sites/mcaster1.com
+[2026-03-22 22:14:53] [ERROR] Deploy failed: could not write snippet for mcaster1.com
+[2026-03-22 22:18:21] [ERROR] Failed to install nginx snippet: /etc/nginx/backdraft.d/sites/mcaster1.com/mcaster1.com.conf
+[2026-03-22 22:18:21] [ERROR] Deploy failed: could not write snippet for mcaster1.com
+[2026-03-22 22:21:53] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-22 22:38:22] [ERROR] nginx -t failed (raw=256 exit=1)
+[2026-03-22 22:38:22] [ERROR] Deploy failed: nginx config test failed for mcaster1.com
+[2026-03-22 22:38:54] [ERROR] nginx -t failed (raw=256 exit=1)
+[2026-03-22 22:38:54] [ERROR] Deploy failed: nginx config test failed for mcaster1.com
+[2026-03-22 22:40:06] [ERROR] nginx -t failed (raw=256 exit=1)
+[2026-03-22 22:40:06] [ERROR] Deploy failed: nginx config test failed for mcaster1.com
+[2026-03-22 22:51:12] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-22 22:54:45] [ERROR] nginx -t failed (raw=256 exit=1)
+[2026-03-22 22:54:45] [ERROR] Deploy failed: nginx config test failed for mediacast.one
+[2026-03-22 22:57:25] [ERROR] WAF FCGI stderr: Access to the script '/var/www/mcaster1.com/html//CHANGELOG.html' has been denied (see security.limit_extensions)
+[2026-03-22 22:57:32] [ERROR] WAF FCGI stderr: Access to the script '/var/www/mcaster1.com/html/CHANGELOG.html' has been denied (see security.limit_extensions)
+[2026-03-22 22:57:43] [ERROR] WAF FCGI stderr: Access to the script '/var/www/mcaster1.com/html//CHANGELOG.html' has been denied (see security.limit_extensions)
+[2026-03-22 23:00:58] [ERROR] WAF FCGI stderr: Access to the script '/var/www/mcaster1.com/html/CHANGELOG.html' has been denied (see security.limit_extensions)
+[2026-03-22 23:04:54] [ERROR] WAF FCGI stderr: Access to the script '/var/www/mcaster1.com/html/CHANGELOG.html' has been denied (see security.limit_extensions)
+[2026-03-23 00:32:32] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:14:57] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:14:58] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:14:58] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:14:59] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:14:59] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:14:59] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:14:59] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:00] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:00] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:01] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:01] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:01] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:01] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:01] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:01] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:01] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:02] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 05:15:02] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 06:52:47] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 06:52:50] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 06:52:50] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 06:52:50] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 06:52:51] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 10:29:12] [ERROR] WAF FCGI stderr: Primary script unknown
+[2026-03-23 16:58:06] [ERROR] MySQL connect failed: Can't connect to server on '127.0.0.1' (115)
+[2026-03-23 17:10:07] [ERROR] MySQL connect failed: Can't connect to server on '127.0.0.1' (115)
+[2026-03-23 17:10:08] [ERROR] MySQL connect failed: Can't connect to server on '127.0.0.1' (115)
+[2026-03-23 17:14:08] [ERROR] MySQL connect failed: Can't connect to server on '127.0.0.1' (115)
+[2026-03-23 17:29:31] [ERROR] MySQL connect failed: Can't connect to server on '127.0.0.1' (115)
+[2026-03-23 19:36:17] [ERROR] MySQL connect failed: Can't connect to server on '127.0.0.1' (115)
+[2026-03-23 19:43:13] [ERROR] MySQL connect failed: Can't connect to server on '127.0.0.1' (115)

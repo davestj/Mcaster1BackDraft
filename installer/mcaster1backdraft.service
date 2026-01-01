@@ -1,0 +1,58 @@
+# ============================================================================
+# Mcaster1BackDraft — Web Application Firewall + Log Analyzer
+# systemd service unit
+#
+# Install:
+#   sudo cp installer/mcaster1backdraft.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable mcaster1backdraft
+#   sudo systemctl start mcaster1backdraft
+#
+# Ports: 9432 (WAF), 8862 (Web UI), 8832 (API)
+# User: mediacast1
+# Config: etc/Mcaster1BackDraft.yaml
+# ============================================================================
+
+[Unit]
+Description=Mcaster1BackDraft WAF + Log Analyzer
+Documentation=file:///var/www/mcaster1.com/Mcaster1BackDraft/CLAUDE.md
+After=network.target mysql.service mariadb.service
+Wants=mysql.service
+
+[Service]
+Type=forking
+User=mediacast1
+Group=mediacast1
+WorkingDirectory=/var/www/mcaster1.com/Mcaster1BackDraft
+PIDFile=/var/www/mcaster1.com/Mcaster1BackDraft/logs/backdraft.pid
+
+ExecStart=/var/www/mcaster1.com/Mcaster1BackDraft/src/Mcaster1BackDraft \
+    -c /var/www/mcaster1.com/Mcaster1BackDraft/etc/Mcaster1BackDraft.yaml \
+    --daemon
+
+ExecStop=/bin/kill -TERM $MAINPID
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=mixed
+KillSignal=SIGTERM
+SendSIGKILL=yes
+
+# Restart on crash, not on clean shutdown
+Restart=on-failure
+RestartSec=5
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Note: No ProtectSystem — daemon manages nginx configs in /etc/nginx via sudo
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mcaster1backdraft
+
+# Timeout — allow up to 30s for clean shutdown (task runner drain)
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target

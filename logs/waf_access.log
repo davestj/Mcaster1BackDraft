@@ -1,0 +1,20 @@
+#Version: 1.0
+#Date: 2026-03-17 16:50:32
+#Fields: date time c-ip cs-method cs-uri-stem cs-uri-query sc-status sc-bytes cs(User-Agent) cs(Referer) x-backdraft-score x-backdraft-action x-backdraft-page time-taken
+#Version: 1.0
+#Date: 2026-03-17 17:20:49
+#Fields: date time c-ip cs-method cs-uri-stem cs-uri-query sc-status sc-bytes cs(User-Agent) cs(Referer) x-backdraft-score x-backdraft-action x-backdraft-page time-taken
+#Version: 1.0
+#Date: 2026-03-18 00:30:43
+#Fields: date time c-ip cs-method cs-uri-stem cs-uri-query sc-status sc-bytes cs(User-Agent) cs(Referer) x-backdraft-score x-backdraft-action x-backdraft-page time-taken
+#Version: 1.0
+#Date: 2026-03-18 03:44:48
+#Fields: date time c-ip cs-method cs-uri-stem cs-uri-query sc-status sc-bytes cs(User-Agent) cs(Referer) x-backdraft-score x-backdraft-action x-backdraft-page time-taken
+2026-03-18 03:57:52 50.190.31.249 GET /mcaster1amp.php  502 20 "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:148.0) Gecko/20100101 Firefox/148.0" "" 0 pass mcaster1.com/mcaster1amp.php 28
+2026-03-18 03:57:57 50.190.31.249 GET /mcaster1amp.php  502 20 "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:148.0) Gecko/20100101 Firefox/148.0" "" 0 pass mcaster1.com/mcaster1amp.php 23
+2026-03-18 03:57:57 50.190.31.249 GET /mcaster1amp.php  502 20 "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:148.0) Gecko/20100101 Firefox/148.0" "" 0 pass mcaster1.com/mcaster1amp.php 23
+#Version: 1.0
+#Date: 2026-03-18 04:06:17
+#Fields: date time c-ip cs-method cs-uri-stem cs-uri-query sc-status sc-bytes cs(User-Agent) cs(Referer) x-backdraft-score x-backdraft-action x-backdraft-page time-taken
+2026-03-18 04:06:20 15.204.91.208 GET /mcaster1amp.php  404 16 "curl/7.88.1" "" 0 pass mcaster1.com/mcaster1amp.php 27
+2026-03-18 04:06:50 15.204.91.208 GET /mcaster1amp.php  404 16 "curl/7.88.1" "" 0 pass mcaster1.com/mcaster1amp.php 3

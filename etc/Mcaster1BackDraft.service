@@ -1,0 +1,26 @@
+[Unit]
+Description=Mcaster1BackDraft — WAF Admin Daemon
+Documentation=https://mcaster1.com
+After=network.target mariadb.service mysql.service
+Wants=network.target
+
+[Service]
+Type=simple
+User=mediacast1
+Group=www-data
+ExecStart=/var/www/mcaster1.com/Mcaster1BackDraft/src/Mcaster1BackDraft -c /var/www/mcaster1.com/Mcaster1BackDraft/etc/Mcaster1BackDraft.yaml
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65536
+LimitNPROC=4096
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=Mcaster1BackDraft
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ReadWritePaths=/var/www/mcaster1.com/Mcaster1BackDraft/logs /var/run
+
+[Install]
+WantedBy=multi-user.target

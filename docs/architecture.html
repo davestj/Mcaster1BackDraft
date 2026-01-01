@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture — Mcaster1BackDraft</title>
+<style>
+:root{--bg:#0a0e1a;--card:#1e293b;--border:#334155;--amber:#f59e0b;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--green:#22c55e;--red:#ef4444;--cyan:#0891b2}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+h1{font-size:24px;font-weight:800;margin-bottom:8px;color:var(--amber)}
+.sub{color:var(--dim);font-size:14px;margin-bottom:32px}
+h2{font-size:18px;font-weight:700;margin:28px 0 12px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:8px}
+h3{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--amber)}
+p,li{margin-bottom:8px;color:var(--dim);font-size:14px}
+ul{margin:8px 0 16px 20px}
+a{color:var(--amber)}
+code{background:#111827;padding:2px 6px;border-radius:4px;font-size:13px;font-family:monospace;color:var(--amber)}
+pre{background:#111827;padding:16px;border-radius:8px;overflow-x:auto;font-size:12px;line-height:1.6;margin:12px 0;border:1px solid var(--border)}
+pre code{background:none;padding:0;color:#a2aabc}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+th{background:#111827;padding:8px 12px;text-align:left;font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+td{padding:8px 12px;border-bottom:1px solid #1e293b;color:var(--dim)}
+.nav{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}
+.nav a{padding:8px 16px;background:var(--card);border:1px solid var(--border);border-radius:6px;color:var(--text);font-weight:600;font-size:13px;text-decoration:none}
+.nav a:hover{border-color:var(--amber);color:var(--amber)}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Architecture</h1>
+<p class="sub">Mcaster1BackDraft — Pure C++ single-binary WAF</p>
+
+<div class="nav">
+<a href="index.html">Home</a>
+<a href="architecture.html">Architecture</a>
+<a href="getting-started.html">Getting Started</a>
+<a href="waf-rules.html">WAF Rules</a>
+<a href="planning.html">Roadmap</a>
+</div>
+
+<h2>Request Flow</h2>
+<pre><code>Client Browser
+    │
+    ▼
+nginx (port 443, TLS termination)
+    │
+    │  location = /page.php {
+    │      proxy_pass https://127.0.0.1:9432;
+    │      proxy_set_header Host $host;
+    │      proxy_set_header X-Real-IP $remote_addr;
+    │      proxy_set_header X-BackDraft-Page "site.com/page.php";
+    │  }
+    │
+    ▼
+Mcaster1BackDraft C++ Daemon (port 9432)
+    │
+    ├─ 1. Parse HTTP request (method, path, query, headers, body)
+    ├─ 2. Extract X-Real-IP, X-BackDraft-Page
+    ├─ 3. URL-decode query string and path
+    ├─ 4. Load WAF rules from MySQL (cached, reloaded every 30s)
+    ├─ 5. Evaluate each rule: regex/contains/equals matching
+    ├─ 6. Calculate threat score (sum of matched rule scores)
+    ├─ 7. Determine action: pass / log / flag / block
+    ├─ 8. Log request to backdraft_requests table
+    ├─ 9. If score >= threshold: log to backdraft_threats
+    ├─ 10. If mode=active && action=block: return 403
+    │
+    ├─ 11. Look up doc_root from backdraft_sites by Host header
+    ├─ 12. Build FastCGI request (FCGI_BEGIN + FCGI_PARAMS + FCGI_STDIN)
+    ├─ 13. Connect to PHP-FPM unix socket
+    ├─ 14. Send FastCGI request, read FCGI_STDOUT response
+    ├─ 15. Parse PHP response headers (Status, Content-Type)
+    │
+    ▼
+Return HTTP response to nginx → Client</code></pre>
+
+<h2>Source Files</h2>
+<table>
+<tr><th>File</th><th>Lines</th><th>Purpose</th></tr>
+<tr><td><code>main.cpp</code></td><td>~150</td><td>Entry point, 3 HTTP servers, signal handlers, lifecycle</td></tr>
+<tr><td><code>http_server.cpp</code></td><td>~500</td><td>TLS listener, request parsing, FastCGI client, static files</td></tr>
+<tr><td><code>waf_handler.cpp</code></td><td>~350</td><td>WAF engine: rule loading, URL decode, inspection, scoring, FCGI forward</td></tr>
+<tr><td><code>api_handler.cpp</code></td><td>~500</td><td>REST API: health, rules CRUD, users, sites, threats, perf</td></tr>
+<tr><td><code>threadpool.cpp</code></td><td>~80</td><td>Bounded thread pool, auto-sized from CPU/memory</td></tr>
+<tr><td><code>dbpool.cpp</code></td><td>~100</td><td>MySQL connection pool, RAII handles</td></tr>
+<tr><td><code>auth.cpp</code></td><td>~160</td><td>Auth: master user, DB users, sessions, SHA-256</td></tr>
+<tr><td><code>config.cpp</code></td><td>~100</td><td>YAML config loader</td></tr>
+<tr><td><code>logger.cpp</code></td><td>~100</td><td>4-file logging with rotation</td></tr>
+<tr><td><code>site_discovery.cpp</code></td><td>~100</td><td>nginx config parser</td></tr>
+<tr><td><code>nginx_manager.cpp</code></td><td>~80</td><td>nginx config writer, reload</td></tr>
+<tr><td><code>perf_monitor.cpp</code></td><td>~80</td><td>Self-monitoring: CPU, memory, FDs</td></tr>
+</table>
+
+<h2>Thread Pool</h2>
+<p>Each of the 3 HTTP listeners gets its own bounded thread pool. Pool size is auto-calculated:</p>
+<ul>
+<li>Base: <code>CPU cores * 4</code> (I/O-bound work: FastCGI waits on PHP-FPM)</li>
+<li>Capped by memory: <code>available_MB / 2 / 2</code> (each thread ~2MB stack)</li>
+<li>Floor: 8 threads minimum</li>
+<li>Ceiling: 512 threads maximum</li>
+</ul>
+<p>On a 4-core server with 8GB RAM: 16 threads per port = 48 total worker threads.</p>
+
+<h2>Database Schema</h2>
+<p>16 tables in <code>mcaster1_backdraft</code>. Key tables:</p>
+<ul>
+<li><strong>backdraft_requests</strong> — HIGH VOLUME. Every WAF-inspected request: IP, method, path, query, user agent, threat score, action, matched rules, upstream status, latency.</li>
+<li><strong>backdraft_threats</strong> — Elevated events (score >= threshold): category, severity, matched rules, dismissal status.</li>
+<li><strong>backdraft_rules</strong> — WAF rules: target, operator, value (regex/contains/equals), action, score. Supports builtin, custom, learned, imported types.</li>
+<li><strong>backdraft_sites</strong> — Discovered nginx sites: server_name, config_path, doc_root, access/error log paths, WAF/log enrollment status.</li>
+<li><strong>backdraft_perf_metrics</strong> — Self-monitoring snapshots every 10s: CPU, RSS, threads, FDs.</li>
+</ul>
+
+<h2>Why Not Go?</h2>
+<p>The initial design used Go sidecars for the WAF proxy and log daemon. This was scrapped because:</p>
+<ul>
+<li>Go's <code>httputil.ReverseProxy</code> speaks HTTP, not FastCGI — creating an impossible proxy loop through nginx</li>
+<li>The C++ daemon already has a working FastCGI client</li>
+<li>Multiple binaries across languages = multiple build systems, multiple deploy targets, multiple failure modes</li>
+<li>One C++ binary with 3 listeners is simpler to develop, test, deploy, and manage</li>
+</ul>
+
+<p style="margin-top:40px;color:var(--muted);font-size:12px">&copy; 2026 Mcaster1</p>
+</div>
+</body>
+</html>

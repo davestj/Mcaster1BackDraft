@@ -1,0 +1,68 @@
+# ============================================================================
+# Mcaster1BackDraft — C++ Admin Daemon Configuration
+# Version: 0.0.1a
+# ============================================================================
+
+app_name: "Mcaster1BackDraft"
+version: "0.0.1a"
+pid_file: "/var/run/Mcaster1BackDraft.pid"
+daemon: false
+
+log:
+  level: DEBUG
+  dir: "/var/www/mcaster1.com/Mcaster1BackDraft/logs"
+  max_mb: 50
+  keep: 5
+
+auth:
+  master_username: dstjohn
+  master_password: "CHANGEME"
+  api_token: "GENERATE_NEW_TOKEN"
+  session_ttl_secs: 3600
+
+http:
+  bind_addr: "0.0.0.0"
+  web_port: 8862
+  api_port: 8832
+  enable_https: true
+  tls_cert: "/etc/ssl/casterclub/fullchain_casterclub_com.pem"
+  tls_key: "/etc/ssl/casterclub/casterclub-wildcard.key"
+  web_root: "/var/www/mcaster1.com/Mcaster1BackDraft/web"
+  fcgi_socket: "/run/php/php8.2-fpm-backdraft.sock"
+
+smtp:
+  host: smtp.gmail.com
+  port: 587
+  username: davestj@casterclub.com
+  password: "CHANGEME"
+  from_addr: davestj@casterclub.com
+  from_name: "Mcaster1 BackDraft WAF"
+  use_tls: true
+
+databases:
+  - name: backdraft
+    host: 127.0.0.1
+    port: 3306
+    database: mcaster1_backdraft
+    username: db_user
+    password: "CHANGEME"
+    charset: utf8mb4
+    pool_size: 8
+
+nginx:
+  sites_enabled: "/etc/nginx/sites-enabled"
+  conf_d: "/etc/nginx/conf.d"
+  snippets: "/etc/nginx/snippets"
+  nginx_bin: "/usr/sbin/nginx"
+  sudo_reload: true
+
+waf:
+  mode: learning
+  rule_reload_secs: 30
+  threat_threshold: 75
+  go_waf_health_url: "https://127.0.0.1:9432/health"
+  go_logd_health_url: "http://127.0.0.1:8833/health"
+
+perf:
+  enabled: true
+  interval_secs: 10

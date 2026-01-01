@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAF Rules — Mcaster1BackDraft</title>
+<style>
+:root{--bg:#0a0e1a;--card:#1e293b;--border:#334155;--amber:#f59e0b;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--green:#22c55e;--red:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}h1{font-size:24px;font-weight:800;margin-bottom:8px;color:var(--amber)}.sub{color:var(--dim);font-size:14px;margin-bottom:32px}
+h2{font-size:18px;font-weight:700;margin:28px 0 12px;border-bottom:1px solid var(--border);padding-bottom:8px}h3{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--amber)}
+p,li{margin-bottom:8px;color:var(--dim);font-size:14px}ul{margin:8px 0 16px 20px}a{color:var(--amber)}
+code{background:#111827;padding:2px 6px;border-radius:4px;font-size:13px;font-family:monospace;color:var(--amber)}
+pre{background:#111827;padding:16px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.6;margin:12px 0;border:1px solid var(--border)}pre code{background:none;padding:0;color:#a2aabc}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+th{background:#111827;padding:8px 12px;text-align:left;font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+td{padding:8px 12px;border-bottom:1px solid #1e293b;color:var(--dim)}
+.nav{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}.nav a{padding:8px 16px;background:var(--card);border:1px solid var(--border);border-radius:6px;color:var(--text);font-weight:600;font-size:13px;text-decoration:none}.nav a:hover{border-color:var(--amber);color:var(--amber)}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}
+.b-amber{background:rgba(245,158,11,.15);color:var(--amber)}.b-green{background:rgba(34,197,94,.15);color:var(--green)}.b-red{background:rgba(239,68,68,.15);color:var(--red)}.b-muted{background:rgba(100,116,139,.15);color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>WAF Rules</h1>
+<p class="sub">Rule engine reference — targets, operators, actions, scoring</p>
+<div class="nav"><a href="index.html">Home</a><a href="architecture.html">Architecture</a><a href="getting-started.html">Getting Started</a><a href="waf-rules.html">WAF Rules</a><a href="planning.html">Roadmap</a></div>
+
+<h2>Built-in Rules</h2>
+<table>
+<tr><th>ID</th><th>Name</th><th>Target</th><th>Operator</th><th>Score</th><th>Action</th></tr>
+<tr><td>1</td><td>SQL Injection — UNION SELECT</td><td>query</td><td>regex</td><td><span class="badge b-red">80</span></td><td>flag</td></tr>
+<tr><td>2</td><td>SQL Injection — OR 1=1</td><td>query</td><td>regex</td><td><span class="badge b-red">70</span></td><td>flag</td></tr>
+<tr><td>3</td><td>Path Traversal</td><td>path</td><td>contains</td><td><span class="badge b-red">90</span></td><td>flag</td></tr>
+<tr><td>4</td><td>XSS — Script Tag</td><td>query</td><td>regex</td><td><span class="badge b-red">85</span></td><td>flag</td></tr>
+<tr><td>5</td><td>Command Injection</td><td>query</td><td>regex</td><td><span class="badge b-red">95</span></td><td>flag</td></tr>
+<tr><td>6</td><td>PHP Exploit Targets</td><td>path</td><td>regex</td><td><span class="badge b-amber">60</span></td><td>flag</td></tr>
+<tr><td>7</td><td>Empty User-Agent</td><td>agent</td><td>equals</td><td><span class="badge b-muted">20</span></td><td>log</td></tr>
+<tr><td>8</td><td>Non-Standard HTTP Method</td><td>method</td><td>regex</td><td><span class="badge b-muted">15</span></td><td>log</td></tr>
+</table>
+
+<h2>Rule Targets</h2>
+<table>
+<tr><th>Target</th><th>What's Inspected</th></tr>
+<tr><td><code>query</code></td><td>URL query string (URL-decoded before matching)</td></tr>
+<tr><td><code>path</code></td><td>Request path (URL-decoded before matching)</td></tr>
+<tr><td><code>body</code></td><td>Request body (first 64KB)</td></tr>
+<tr><td><code>agent</code></td><td>User-Agent header value</td></tr>
+<tr><td><code>ip</code></td><td>Client IP address (from X-Real-IP)</td></tr>
+<tr><td><code>method</code></td><td>HTTP method (GET, POST, etc.)</td></tr>
+<tr><td><code>header</code></td><td>Specific header (set <code>field</code> to header name)</td></tr>
+<tr><td><code>cookie</code></td><td>Cookie header value</td></tr>
+</table>
+
+<h2>Operators</h2>
+<table>
+<tr><th>Operator</th><th>Behavior</th></tr>
+<tr><td><code>contains</code></td><td>Case-insensitive substring match</td></tr>
+<tr><td><code>not_contains</code></td><td>Inverse of contains</td></tr>
+<tr><td><code>regex</code></td><td>ECMAScript regex with case-insensitive flag (no <code>(?i)</code> prefix needed)</td></tr>
+<tr><td><code>equals</code></td><td>Case-insensitive exact match</td></tr>
+<tr><td><code>not_equals</code></td><td>Inverse of equals</td></tr>
+<tr><td><code>starts_with</code></td><td>Case-insensitive prefix match</td></tr>
+<tr><td><code>ends_with</code></td><td>Case-insensitive suffix match</td></tr>
+<tr><td><code>gt</code></td><td>Numeric greater than</td></tr>
+<tr><td><code>lt</code></td><td>Numeric less than</td></tr>
+</table>
+
+<h2>Actions</h2>
+<table>
+<tr><th>Action</th><th>Learning Mode</th><th>Active Mode</th></tr>
+<tr><td><code>log</code></td><td>Log to DB, pass request</td><td>Log to DB, pass request</td></tr>
+<tr><td><code>flag</code></td><td>Log to DB + threats table, pass</td><td>Log to DB + threats table, pass</td></tr>
+<tr><td><code>block</code></td><td>Downgraded to <code>flag</code></td><td>Return 403 Forbidden</td></tr>
+</table>
+
+<h2>Scoring</h2>
+<p>Each matched rule adds its score to the request's total. Multiple rules can match the same request — scores are cumulative. The highest-severity action wins.</p>
+<ul>
+<li><strong>0</strong> — Clean request, no rules matched</li>
+<li><strong>1-49</strong> — Low concern, logged for analysis</li>
+<li><strong>50-74</strong> — Medium concern, flagged for review</li>
+<li><strong>75+</strong> — High concern, threat event created (configurable threshold)</li>
+<li><strong>90+</strong> — Critical — blocked in active mode</li>
+</ul>
+
+<h2>URL Decoding</h2>
+<p>Query strings and paths are URL-decoded before rule matching. This catches encoded attacks like:</p>
+<ul>
+<li><code>%20UNION%20SELECT</code> → <code> UNION SELECT</code></li>
+<li><code>%3Cscript%3E</code> → <code>&lt;script&gt;</code></li>
+<li><code>%3B%20wget</code> → <code>; wget</code></li>
+</ul>
+
+<h2>Regex Notes</h2>
+<ul>
+<li>Uses C++ <code>std::regex</code> with ECMAScript syntax</li>
+<li><strong>Do NOT use <code>(?i)</code> prefix</strong> — case-insensitive flag is applied automatically</li>
+<li>Rules with invalid regex patterns are skipped with an error log</li>
+<li>Regex is compiled once on rule load and cached</li>
+</ul>
+
+<p style="margin-top:40px;color:var(--muted);font-size:12px">&copy; 2026 Mcaster1</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap — Mcaster1BackDraft</title>
+<style>
+:root{--bg:#0a0e1a;--card:#1e293b;--border:#334155;--amber:#f59e0b;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--green:#22c55e;--red:#ef4444;--cyan:#0891b2}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}h1{font-size:24px;font-weight:800;margin-bottom:8px;color:var(--amber)}.sub{color:var(--dim);font-size:14px;margin-bottom:32px}
+h2{font-size:18px;font-weight:700;margin:28px 0 12px;border-bottom:1px solid var(--border);padding-bottom:8px}
+p,li{margin-bottom:8px;color:var(--dim);font-size:14px}ul{margin:8px 0 16px 20px}a{color:var(--amber)}
+.nav{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}.nav a{padding:8px 16px;background:var(--card);border:1px solid var(--border);border-radius:6px;color:var(--text);font-weight:600;font-size:13px;text-decoration:none}.nav a:hover{border-color:var(--amber);color:var(--amber)}
+.phase{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin:16px 0;border-left:4px solid}
+.phase.done{border-left-color:var(--green)}.phase.next{border-left-color:var(--amber)}.phase.planned{border-left-color:var(--muted)}
+.phase h3{font-size:16px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:700}
+.b-done{background:rgba(34,197,94,.15);color:var(--green)}.b-next{background:rgba(245,158,11,.15);color:var(--amber)}.b-plan{background:rgba(100,116,139,.15);color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Development Roadmap</h1>
+<p class="sub">Mcaster1BackDraft — Phase tracking and future plans</p>
+<div class="nav"><a href="index.html">Home</a><a href="architecture.html">Architecture</a><a href="getting-started.html">Getting Started</a><a href="waf-rules.html">WAF Rules</a><a href="planning.html">Roadmap</a></div>
+
+<div class="phase done">
+<h3><span class="badge b-done">COMPLETE</span> v0.0.1a — Foundation</h3>
+<ul>
+<li>Pure C++ single-binary daemon with 3 listener ports (9432 WAF, 8862 UI, 8832 API)</li>
+<li>WAF rule engine — 9 built-in rules, URL decoding, regex matching, threat scoring</li>
+<li>FastCGI client — forwards WAF-inspected requests directly to PHP-FPM</li>
+<li>Bounded thread pools — auto-sized from CPU cores and available memory</li>
+<li>MySQL schema — 16 tables, seeded with rules, agents, config, admin user</li>
+<li>PHP dashboard — 13 pages with dark cybersecurity theme, Chart.js analytics</li>
+<li>CRUD APIs — rules create/edit/delete, user management, site toggles, profile edit</li>
+<li>Site discovery — 27 nginx sites with doc_root, log paths</li>
+<li>WAF enrollment flow — per-page nginx snippet generation, 3-step wizard</li>
+<li>Log analysis — direct access/error log parsing, Chart.js dashboards (hourly traffic, status codes, top pages, IPs, agents, referers)</li>
+<li>Self-performance monitoring — CPU, memory, threads, FDs every 10 seconds</li>
+<li>Dual clocks (military + civilian), WAF mode pill, user dropdown, toast notifications</li>
+</ul>
+</div>
+
+<div class="phase next">
+<h3><span class="badge b-next">NEXT</span> v0.0.2a — Log Analysis Engine</h3>
+<ul>
+<li>Multi-format log parser: CLF, W3C, Icecast2, Shoutcast, Mcaster1DNAS, playlist logs</li>
+<li>System security log monitoring: <code>/var/log/auth.log</code>, <code>/var/log/syslog</code>, fail2ban</li>
+<li>SSH brute force detection from auth.log</li>
+<li>Automated log file discovery — scan <code>/var/log/</code> and per-site log directories</li>
+<li>Hourly/daily aggregation stored to MySQL for historical reporting</li>
+<li>Threat actor profiling — correlate IPs across all log sources</li>
+<li>Anomaly detection — baseline building, spike detection</li>
+</ul>
+</div>
+
+<div class="phase planned">
+<h3><span class="badge b-plan">PLANNED</span> v0.0.3a — Rule Engine Polish</h3>
+<ul>
+<li>Bulk rule import/export (YAML format)</li>
+<li>Rule test tool — paste a sample request, see which rules match</li>
+<li>Agent auto-classification from request patterns</li>
+<li>IP reputation auto-ban (configurable threshold)</li>
+<li>Rate limiting rules (requests per IP per time window)</li>
+<li>GeoIP integration for country-based rules</li>
+</ul>
+</div>
+
+<div class="phase planned">
+<h3><span class="badge b-plan">PLANNED</span> v0.0.4a — Active Mode</h3>
+<ul>
+<li>WAF blocking mode — return 403 for high-score requests</li>
+<li>Challenge pages (JavaScript challenge / CAPTCHA stub)</li>
+<li>Email alerts for critical threats (via SMTP)</li>
+<li>IP ban management — manual and auto-ban with expiry</li>
+<li>Whitelist/allowlist rules</li>
+</ul>
+</div>
+
+<div class="phase planned">
+<h3><span class="badge b-plan">PLANNED</span> v0.0.5a — nginx Automation</h3>
+<ul>
+<li>Automated nginx snippet generation and deployment</li>
+<li>BackDraft-managed <code>/etc/nginx/backdraft.d/</code> directory</li>
+<li>One-click WAF enrollment from the dashboard</li>
+<li>nginx config validation and auto-reload</li>
+<li>Rollback on failed config</li>
+</ul>
+</div>
+
+<div class="phase planned">
+<h3><span class="badge b-plan">PLANNED</span> v0.1.0 — Production Release</h3>
+<ul>
+<li>Battle-tested across multiple sites in learning mode</li>
+<li>Debian .deb packaging</li>
+<li>Systemd service with auto-restart</li>
+<li>Full documentation site</li>
+<li>Product page on mcaster1.com</li>
+<li>Security audit and hardening</li>
+</ul>
+</div>
+
+<h2>Lessons Learned</h2>
+<ul>
+<li><strong>Single binary wins.</strong> The initial Go sidecar architecture (3 binaries, 2 languages) was scrapped in favor of one C++ daemon. Less complexity, faster iteration, no proxy loops.</li>
+<li><strong>FastCGI is the right protocol.</strong> The WAF talks directly to PHP-FPM via FastCGI unix socket. No HTTP reverse proxy needed. No nginx middleman for the upstream.</li>
+<li><strong>URL decode before matching.</strong> Encoded payloads bypass regex rules. Always decode <code>%XX</code> and <code>+</code> before inspection.</li>
+<li><strong><code>std::regex</code> doesn't support <code>(?i)</code>.</strong> Use <code>std::regex::icase</code> flag instead. Strip <code>(?i)</code> prefix from DB-stored patterns automatically.</li>
+<li><strong>MySQL NULL crashes C++ strings.</strong> Always wrap <code>MYSQL_ROW</code> field access with a <code>safe()</code> helper that returns empty string for NULL.</li>
+</ul>
+
+<p style="margin-top:40px;color:var(--muted);font-size:12px">&copy; 2026 Mcaster1</p>
+</div>
+</body>
+</html>

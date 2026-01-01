@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting Started — Mcaster1BackDraft</title>
+<style>
+:root{--bg:#0a0e1a;--card:#1e293b;--border:#334155;--amber:#f59e0b;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b;--green:#22c55e;--red:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}h1{font-size:24px;font-weight:800;margin-bottom:8px;color:var(--amber)}.sub{color:var(--dim);font-size:14px;margin-bottom:32px}
+h2{font-size:18px;font-weight:700;margin:28px 0 12px;border-bottom:1px solid var(--border);padding-bottom:8px}h3{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--amber)}
+p,li{margin-bottom:8px;color:var(--dim);font-size:14px}ul,ol{margin:8px 0 16px 20px}a{color:var(--amber)}
+code{background:#111827;padding:2px 6px;border-radius:4px;font-size:13px;font-family:monospace;color:var(--amber)}
+pre{background:#111827;padding:16px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.6;margin:12px 0;border:1px solid var(--border)}pre code{background:none;padding:0;color:#a2aabc}
+.nav{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}.nav a{padding:8px 16px;background:var(--card);border:1px solid var(--border);border-radius:6px;color:var(--text);font-weight:600;font-size:13px;text-decoration:none}.nav a:hover{border-color:var(--amber);color:var(--amber)}
+.step{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin:16px 0;position:relative;padding-left:60px}
+.step-num{position:absolute;left:16px;top:20px;width:32px;height:32px;border-radius:50%;background:var(--amber);color:#000;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Getting Started</h1>
+<p class="sub">Build, configure, and run Mcaster1BackDraft</p>
+<div class="nav"><a href="index.html">Home</a><a href="architecture.html">Architecture</a><a href="getting-started.html">Getting Started</a><a href="waf-rules.html">WAF Rules</a><a href="planning.html">Roadmap</a></div>
+
+<div class="step"><div class="step-num">1</div>
+<h3>Install Dependencies</h3>
+<pre><code>sudo apt install build-essential autoconf automake \
+  libssl-dev libyaml-cpp-dev libmariadb-dev nlohmann-json3-dev</code></pre>
+</div>
+
+<div class="step"><div class="step-num">2</div>
+<h3>Build</h3>
+<pre><code>cd /var/www/mcaster1.com/Mcaster1BackDraft
+./autogen.sh
+./configure
+make -j$(nproc)</code></pre>
+<p>Binary at: <code>src/Mcaster1BackDraft</code></p>
+</div>
+
+<div class="step"><div class="step-num">3</div>
+<h3>Create Database</h3>
+<pre><code>mysql --defaults-extra-file=~/.my.cnf < sql/schema.sql</code></pre>
+<p>Creates <code>mcaster1_backdraft</code> with 16 tables, seeds 9 WAF rules, 14 agent signatures, and the admin user.</p>
+</div>
+
+<div class="step"><div class="step-num">4</div>
+<h3>Configure</h3>
+<p>Edit <code>etc/Mcaster1BackDraft.yaml</code>:</p>
+<ul>
+<li>Set database credentials</li>
+<li>Set TLS cert/key paths</li>
+<li>Set <code>waf.upstream_fcgi</code> to your PHP-FPM socket</li>
+<li>Set <code>auth.master_username</code> / <code>auth.master_password</code></li>
+</ul>
+</div>
+
+<div class="step"><div class="step-num">5</div>
+<h3>Run</h3>
+<pre><code>./src/Mcaster1BackDraft -c etc/Mcaster1BackDraft.yaml</code></pre>
+<p>Three ports start: 9432 (WAF), 8862 (Web UI), 8832 (API).</p>
+</div>
+
+<div class="step"><div class="step-num">6</div>
+<h3>Login</h3>
+<p>Browse to <code>https://your-server:8862/login.php</code> and sign in with your master credentials.</p>
+</div>
+
+<div class="step"><div class="step-num">7</div>
+<h3>Enable WAF on a Page</h3>
+<p>Add a location block in your nginx site config:</p>
+<pre><code>location = /page.php {
+    proxy_pass https://127.0.0.1:9432;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-BackDraft-Page "site.com/page.php";
+    proxy_buffering off;
+}</code></pre>
+<pre><code>sudo nginx -t && sudo nginx -s reload</code></pre>
+<p>Traffic for that page now flows through BackDraft. Check the dashboard for logged requests.</p>
+</div>
+
+<h2>Verify</h2>
+<pre><code># Health check
+curl -sk https://127.0.0.1:9432/health
+
+# API status
+curl -sk -H "Authorization: Bearer YOUR_TOKEN" https://127.0.0.1:8832/api/status
+
+# Test SQLi detection
+curl -sk -H "Host: your-site.com" \
+  "https://127.0.0.1:9432/test.php?id=1%20UNION%20SELECT%20*"
+
+# Check DB
+mysql --defaults-extra-file=~/.my.cnf mcaster1_backdraft \
+  -e "SELECT path, threat_score FROM backdraft_requests ORDER BY id DESC LIMIT 5"</code></pre>
+
+<p style="margin-top:40px;color:var(--muted);font-size:12px">&copy; 2026 Mcaster1</p>
+</div>
+</body>
+</html>
