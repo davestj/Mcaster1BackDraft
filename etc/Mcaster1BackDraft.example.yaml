@@ -16,8 +16,8 @@ log:
 
 auth:
   master_username: dstjohn
-  master_password: "DUMMY_MARIADB_PWD_SET_VIA_VAULT"
-  api_token: "DUMMY_BACKDRAFT_APP_KEY_SET_VIA_VAULT"
+  master_password: "your_db_password_here"
+  api_token: "bd9f4a2c8e1d7b3f6a0e5c9d2b8f4a1c7e3d0b6f9a2c5e8d1b4f7a0c3e6d9b"
   session_ttl_secs: 3600
 
 http:
@@ -45,8 +45,8 @@ databases:
     host: 127.0.0.1
     port: 3306
     database: mcaster1_backdraft
-    username: DUMMY_MARIADB_USER_SET_VIA_VAULT
-    password: "DUMMY_MARIADB_PWD_SET_VIA_VAULT"
+    username: your_db_username_here
+    password: "your_db_password_here"
     charset: utf8mb4
     pool_size: 8
 
