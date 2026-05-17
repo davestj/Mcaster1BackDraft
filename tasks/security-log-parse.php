@@ -1,4 +1,6 @@
 <?php
+
+require_once __DIR__ . '/../web/app/inc/config.php';
 /**
  * security-log-parse.php — Parse nginx security event logs into DB
  * Schedule: Every 15 minutes
@@ -8,7 +10,7 @@ echo "Started: " . date('Y-m-d H:i:s') . "\n\n";
 
 try {
     $pdo = new PDO('mysql:host=127.0.0.1;port=3306;dbname=mcaster1_backdraft;charset=utf8mb4',
-        'DUMMY_MARIADB_USER_SET_VIA_VAULT', 'DUMMY_MARIADB_PWD_SET_VIA_VAULT',
+        BD_DB_USER, BD_DB_PASS,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
 } catch (PDOException $e) { echo "FATAL: " . $e->getMessage() . "\n"; exit(1); }
 
